@@ -25,14 +25,21 @@ class MenuList extends StatelessWidget {
       ),
       body: ListView.builder(
         padding: EdgeInsets.all(16.0),
-        itemBuilder: (context, i) => _buildRow(_items[i]),
+        itemBuilder: (context, i) => _buildRow(context, _items[i]),
         itemCount: _items.length,
       ),
     );
   }
 
-  Widget _buildRow(_MenuItem item) => ListTile(
-        title: Text(item.label, style: _biggerFont),
+  Widget _buildRow(BuildContext context, _MenuItem item) => InkWell(
+        child: ListTile(
+          title: Text(item.label, style: _biggerFont),
+        ),
+        onTap: () {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(item.label),
+          ));
+        },
       );
 }
 
