@@ -22,8 +22,8 @@ class TodoItemRepository {
       'title': title,
       'body': body,
       'isDone': 0,
-      'createdAt': now,
-      'updatedAt': now,
+      'createdAt': now.toString(),
+      'updatedAt': now.toString(),
     };
 
     final db = await DBProvider.instance.database;
@@ -35,7 +35,7 @@ class TodoItemRepository {
     final update = <String, dynamic>{
       'id': id,
       'isDone': 1,
-      'updatedAt': now,
+      'updatedAt': now.toString(),
     };
 
     final db = await DBProvider.instance.database;
@@ -54,7 +54,7 @@ class TodoItemRepository {
       'title': item.title,
       'body': item.body,
       'isDone': item.isDone ? 1 : 0,
-      'updatedAt': now,
+      'updatedAt': now.toString(),
     };
 
     final db = await DBProvider.instance.database;

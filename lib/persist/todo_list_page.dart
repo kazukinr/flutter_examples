@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_examples/persist/repository/todo_item.dart';
 import 'package:flutter_examples/persist/repository/todo_item_repository.dart';
+import 'package:flutter_examples/persist/todo_detail_page.dart';
 import 'package:flutter_examples/persist/todo_list_model.dart';
 import 'package:provider/provider.dart';
 
@@ -31,6 +33,16 @@ class TodoListPage extends StatelessWidget {
                           ),
                         ))
                     .toList());
+          },
+        ),
+        floatingActionButton: FloatingActionButton(
+          child: const Icon(Icons.add),
+          onPressed: () {
+            Navigator.push<MaterialPageRoute>(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => TodoDetailPage(),
+                ));
           },
         ),
       ),
