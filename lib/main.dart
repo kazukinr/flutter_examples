@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_examples/persist/todo_list_page.dart';
+import 'package:flutter_examples/video_player/video_player_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -37,26 +38,33 @@ class MenuList extends StatelessWidget {
           title: Text(item.label, style: _biggerFont),
         ),
         onTap: () {
-          Navigator.of(context).push(_createRoute());
+          Navigator.of(context).push(_createRoute(item));
         },
       );
 
-  Route _createRoute() {
+  Route _createRoute(_MenuItem item) {
     return PageRouteBuilder(
-        pageBuilder: (context, animation, secondaryAnimation) => TodoListPage(),
-        transitionsBuilder: (context, animation, secondaryAnimation, child) {
-          var begin = Offset(0.0, 1.0);
-          var end = Offset.zero;
-          var curve = Curves.ease;
-          var tween = Tween(begin: begin, end: end);
-          var curvedAnimation =
-              CurvedAnimation(parent: animation, curve: curve);
+        pageBuilder: (context, animation, secondaryAnimation) {
+      switch (item.label) {
+        case 'persist':
+          return TodoListPage();
+        case 'video player':
+          return VideoPlayerPage();
+      }
+      // default
+      return TodoListPage();
+    }, transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      var begin = Offset(0.0, 1.0);
+      var end = Offset.zero;
+      var curve = Curves.ease;
+      var tween = Tween(begin: begin, end: end);
+      var curvedAnimation = CurvedAnimation(parent: animation, curve: curve);
 
-          return SlideTransition(
-            position: tween.animate(curvedAnimation),
-            child: child,
-          );
-        });
+      return SlideTransition(
+        position: tween.animate(curvedAnimation),
+        child: child,
+      );
+    });
   }
 }
 
@@ -68,4 +76,5 @@ class _MenuItem {
 
 final _items = <_MenuItem>[
   _MenuItem('persist'),
+  _MenuItem('video player'),
 ];
