@@ -35,17 +35,30 @@ class TodoListPage extends StatelessWidget {
                     .toList());
           },
         ),
-        floatingActionButton: FloatingActionButton(
-          child: const Icon(Icons.add),
-          onPressed: () {
-            Navigator.push<MaterialPageRoute>(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => TodoDetailPage(),
-                ));
+        floatingActionButton: Consumer<TodoListModel>(
+          builder: (context, model, child) {
+            return FloatingActionButton(
+              child: const Icon(Icons.add),
+              onPressed: () {
+                pushWithReload(context, model);
+              },
+            );
           },
         ),
       ),
     );
+  }
+
+  Future<void> pushWithReload(BuildContext context, TodoListModel model,
+      {TodoItem? item}) async {
+    await Navigator.push<MaterialPageRoute>(
+      context,
+      MaterialPageRoute(
+        builder: (context) =>
+            (item == null) ? const TodoDetailPage() : const TodoDetailPage(),
+        fullscreenDialog: true,
+      ),
+    );
+    await model.refreshTodoList();
   }
 }
