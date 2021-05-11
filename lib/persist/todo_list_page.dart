@@ -41,6 +41,30 @@ class TodoListPage extends StatelessWidget {
                           onTap: () {
                             pushWithReload(context, model, item: item);
                           },
+                          onLongPress: () async {
+                            await showDialog<AlertDialog>(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    title: Text('${item.title}を削除しますか？'),
+                                    actions: [
+                                      TextButton(
+                                        child: const Text('はい'),
+                                        onPressed: () async {
+                                          await model.delete(item.id);
+                                          Navigator.of(context).pop();
+                                        },
+                                      ),
+                                      TextButton(
+                                        child: const Text('いいえ'),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                      )
+                                    ],
+                                  );
+                                });
+                          },
                         ))
                     .toList());
           },

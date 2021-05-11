@@ -21,6 +21,11 @@ class TodoListModel extends ChangeNotifier {
 
   Future<void> updateIsDone(int id, bool isDone) async {
     await _todoItemRepository.updateIsDone(id, isDone);
-    notifyListeners();
+    refreshTodoList();
+  }
+
+  Future<void> delete(int id) async {
+    await _todoItemRepository.delete(id);
+    refreshTodoList();
   }
 }
