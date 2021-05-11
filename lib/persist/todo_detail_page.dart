@@ -57,7 +57,11 @@ class TodoDetailPage extends StatelessWidget {
                       onPressed: () async {
                         try {
                           //TODO currently adding only.
-                          await model.create();
+                          if (todoItem == null) {
+                            await model.create();
+                          } else {
+                            await model.update(todoItem!);
+                          }
                           Navigator.pop(context);
                         } catch (e) {
                           await showDialog<AlertDialog>(

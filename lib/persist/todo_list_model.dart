@@ -18,4 +18,9 @@ class TodoListModel extends ChangeNotifier {
     this.list = await _todoItemRepository.findAll();
     notifyListeners();
   }
+
+  Future<void> updateIsDone(int id, bool isDone) async {
+    await _todoItemRepository.updateIsDone(id, isDone);
+    notifyListeners();
+  }
 }

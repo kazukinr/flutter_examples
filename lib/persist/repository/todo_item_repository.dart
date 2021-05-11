@@ -30,11 +30,11 @@ class TodoItemRepository {
     return await db.insert(TodoItem.TABLE_NAME, row);
   }
 
-  Future<void> markAsDone(int id) async {
+  Future<void> updateIsDone(int id, bool isDone) async {
     final now = DateTime.now();
     final update = <String, dynamic>{
       'id': id,
-      'isDone': 1,
+      'isDone': isDone ? 1 : 0,
       'updatedAt': now.toString(),
     };
 

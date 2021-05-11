@@ -23,6 +23,13 @@ class TodoListPage extends StatelessWidget {
             return ListView(
                 children: todoList
                     .map((item) => ListTile(
+                          leading: Checkbox(
+                            value: item.isDone,
+                            onChanged: (bool? value) {
+                              item.isDone = value == true;
+                              model.updateIsDone(item.id, item.isDone);
+                            },
+                          ),
                           title: RichText(
                             text: TextSpan(
                               text: item.title,
@@ -31,6 +38,9 @@ class TodoListPage extends StatelessWidget {
                               ),
                             ),
                           ),
+                          onTap: () {
+                            pushWithReload(context, model, item: item);
+                          },
                         ))
                     .toList());
           },
@@ -54,8 +64,9 @@ class TodoListPage extends StatelessWidget {
     await Navigator.push<MaterialPageRoute>(
       context,
       MaterialPageRoute(
-        builder: (context) =>
-            (item == null) ? const TodoDetailPage() : const TodoDetailPage(),
+        builder: (context) => (item == null)
+            ? const TodoDetailPage()
+            : TodoDetailPage(todoItem: item),
         fullscreenDialog: true,
       ),
     );

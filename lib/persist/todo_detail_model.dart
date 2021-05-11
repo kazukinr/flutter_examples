@@ -21,13 +21,31 @@ class TodoDetailModel extends ChangeNotifier {
 
   Future<void> create() async {
     final String? currentTitle = this.title;
-
     if (currentTitle == null || currentTitle.isEmpty) {
       final Error error = ArgumentError('タイトルは必須入力です。');
       throw error;
     }
 
     await _todoItemRepository.insert(currentTitle, body);
+    notifyListeners();
+  }
+
+  Future<void> update(TodoItem item) async {
+    final String? currentTitle = this.title;
+    if (currentTitle == null || currentTitle.isEmpty) {
+      final Error error = ArgumentError('タイトルは必須入力です。');
+      throw error;
+    }
+
+    final updated = TodoItem(
+      id: item.id,
+      title: currentTitle,
+      body: body,
+      isDone: isDone,
+      createdAt: item.createdAt,
+      updatedAt: DateTime.now(),
+    );
+    await _todoItemRepository.update(updated);
     notifyListeners();
   }
 }
