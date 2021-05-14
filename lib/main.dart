@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_examples/api_call/article_list_page.dart';
 import 'package:flutter_examples/cast/cast_page.dart';
 import 'package:flutter_examples/persist/todo_list_page.dart';
 import 'package:flutter_examples/video_player/video_player_page.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,6 +15,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Examples',
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
       home: MenuList(),
     );
   }
@@ -24,7 +29,7 @@ class MenuList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Main Menu'),
+        title: Text(AppLocalizations.of(context)!.mainMenu),
       ),
       body: ListView.builder(
         padding: EdgeInsets.all(16.0),
@@ -53,6 +58,8 @@ class MenuList extends StatelessWidget {
           return VideoPlayerPage();
         case 'chrome cast':
           return CastPage();
+        case 'api call':
+          return ArticleListPage();
       }
       // default
       return TodoListPage();
@@ -81,4 +88,5 @@ final _items = <_MenuItem>[
   _MenuItem('persist'),
   _MenuItem('video player'),
   _MenuItem('chrome cast'),
+  _MenuItem('api call'),
 ];
