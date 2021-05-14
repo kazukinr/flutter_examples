@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_examples/cast/cast_page.dart';
 import 'package:flutter_examples/persist/todo_list_page.dart';
 import 'package:flutter_examples/video_player/video_player_page.dart';
 
@@ -50,6 +51,8 @@ class MenuList extends StatelessWidget {
           return TodoListPage();
         case 'video player':
           return VideoPlayerPage();
+        case 'chrome cast':
+          return CastPage();
       }
       // default
       return TodoListPage();
@@ -77,4 +80,5 @@ class _MenuItem {
 final _items = <_MenuItem>[
   _MenuItem('persist'),
   _MenuItem('video player'),
+  _MenuItem('chrome cast'),
 ];
