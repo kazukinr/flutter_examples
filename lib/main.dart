@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_examples/api_call/article_list_page.dart';
-import 'package:flutter_examples/cast/cast_page.dart';
 import 'package:flutter_examples/persist/todo_list_page.dart';
 import 'package:flutter_examples/platform_channel/platform_channel_page.dart';
 import 'package:flutter_examples/video_player/video_player_page.dart';
@@ -55,8 +54,6 @@ class MenuList extends StatelessWidget {
           return TodoListPage();
         case 'video player':
           return VideoPlayerPage();
-        case 'chrome cast':
-          return CastPage();
         case 'api call':
           return ArticleListPage();
         case 'platform channel':
@@ -88,7 +85,6 @@ class _MenuItem {
 final _items = <_MenuItem>[
   _MenuItem('persist'),
   _MenuItem('video player'),
-  _MenuItem('chrome cast'),
   _MenuItem('api call'),
   _MenuItem('platform channel'),
 ];

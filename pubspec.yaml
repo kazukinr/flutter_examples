@@ -30,7 +30,6 @@ dependencies:
   path:
   provider:
   video_player:
-  flutter_video_cast:
   retrofit:
   logger:
   freezed:

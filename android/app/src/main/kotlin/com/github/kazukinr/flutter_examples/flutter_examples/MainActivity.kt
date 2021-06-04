@@ -7,7 +7,6 @@ import android.content.IntentFilter
 import android.os.BatteryManager
 import android.os.Build
 import android.os.Bundle
-import com.google.android.gms.cast.framework.CastContext
 import io.flutter.embedding.android.FlutterFragmentActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
@@ -15,11 +14,6 @@ import io.flutter.plugin.common.MethodChannel
 class MainActivity : FlutterFragmentActivity() {
     companion object {
         private const val CHANNEL = "com.github.kazukinr.flutter_examples/battery"
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        CastContext.getSharedInstance(applicationContext)
     }
 
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
