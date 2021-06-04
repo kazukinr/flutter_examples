@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_examples/api_call/article_list_page.dart';
 import 'package:flutter_examples/cast/cast_page.dart';
 import 'package:flutter_examples/persist/todo_list_page.dart';
+import 'package:flutter_examples/platform_channel/platform_channel_page.dart';
 import 'package:flutter_examples/video_player/video_player_page.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() {
@@ -49,8 +49,7 @@ class MenuList extends StatelessWidget {
       );
 
   Route _createRoute(_MenuItem item) {
-    return PageRouteBuilder(
-        pageBuilder: (context, animation, secondaryAnimation) {
+    return PageRouteBuilder(pageBuilder: (context, animation, secondaryAnimation) {
       switch (item.label) {
         case 'persist':
           return TodoListPage();
@@ -60,6 +59,8 @@ class MenuList extends StatelessWidget {
           return CastPage();
         case 'api call':
           return ArticleListPage();
+        case 'platform channel':
+          return PlatformChannelPage();
       }
       // default
       return TodoListPage();
@@ -89,4 +90,5 @@ final _items = <_MenuItem>[
   _MenuItem('video player'),
   _MenuItem('chrome cast'),
   _MenuItem('api call'),
+  _MenuItem('platform channel'),
 ];
